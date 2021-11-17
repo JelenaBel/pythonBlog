@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title%}
+Contact
+{% endblock %}
+
+{% block body%}
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+      .bd-placeholder-img {
+        font-size: 1rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+ .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+<body>
+
+
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Our contacts</h1>
+<br>
+        <p class="lead">Puh: +358401234567</p>
+        <p class="lead">Customer support: +358409876543</p>
+        <p class="lead">e-mail: simple.catering@gmail.com</p>
+        <br>
+        <p class="lead">Aleksanterinkatu 81, 2 b, Helsinki 00100</p>
+
+        <p class="lead">Simple Catering Oy</p>
+        <p class="col-lg-10 fs-4"><image class="rounded mx-auto d-block" style ="width: 100%"  alt="..."  src = "/static/catering-service-waitress-duty-restaurant-young-women-waiter-servicing-event-75291034.jpg"></image>
+            </p>
+        <br>
+      </div>
+
+      <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-light">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="email">E-mail</label>
+     <input type="text" id="email" name="email" placeholder="Your e-mail..">
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</body>
+</html>
+{% endblock %}

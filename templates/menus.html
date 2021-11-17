@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title%}
+Menus
+{% endblock %}
+
+{% block body%}
+
+<main>
+    <div class ="container">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Portions</h4>
+          </div>
+          <div class="card-body">
+            <image class="rounded mx-auto d-block" style ="width: 100%" alt="..."  src = "/static/depositphotos_228514576-stock-photo-tasty-dish-background-close.jpg"></image>
+             <br>
+              <h4 class="card-title pricing-card-title">22€-55€<small class="text-muted fw-light"></small></h4>
+             <h4 class="my-0 fw-normal">Main - chicken, pork, salmon, turkey, lamb options, side dish, salads, desert<small class="text-muted fw-light"></small></h4>
+
+            <h4 class="my-0 fw-normal">800 gr per person<small class="text-muted fw-light"></small></h4>
+
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Served in portions</li>
+              <li>Waitress service recommended</li>
+              <li>Additional fee for plates service </li>
+                <li>Vegan, vegeterian option available </li>
+               <li>Lactose free, without nuts</li>
+                 <li>Free delivery - Helsinki, Vantaa, Espoo. </li>
+            </ul>
+              <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+              <br>
+              <a href="/menus" class="btn btn-secondary my-2" >Read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </main>
+{% endblock %}
