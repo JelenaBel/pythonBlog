@@ -71,6 +71,7 @@ def register():
             return redirect('/signup')
         except:
             db.session.rollback()
+            print("При регистрации произошла ошибка")
             return "При регистрации произошла ошибка"
 
     return render_template("register.html")
@@ -79,8 +80,6 @@ def register():
 @app.route('/about')
 def about():
     return render_template("about.html")
-
-
 
 
 if __name__ == "__main__":
