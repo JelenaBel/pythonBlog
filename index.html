@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title%}
+Главная страница
+{% endblock %}
+
+{% block body%}
+ <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+<main>
+
+    <div class = "headerMenuList">
+        <h1 class="fw-light">Our catering</h1>
+
+        <h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+<h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+        <h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+<h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+        <h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+        <h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+        <h1 class="fw-light">Это блин дурацкий тест We are serving all kind of private and business events.</h1>
+    </div>
+    <br>
+
+
+    <div class ="container">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Portions</h4>
+          </div>
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."  src = "{{url_for('static',filename = 'images/depositphotos_228514576-stock-photo-tasty-dish-background-close.jpg')}}"></image>
+            ></image>
+             <br>
+              <h4 class="card-title pricing-card-title">22€-55€<small class="text-muted fw-light"></small></h4>
+             <h4 class="my-0 fw-normal">Main - chicken, pork, salmon, turkey, lamb options, side dish, salads, desert<small class="text-muted fw-light"></small></h4>
+
+            <h4 class="my-0 fw-normal">800 gr per person<small class="text-muted fw-light"></small></h4>
+
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Served in portions</li>
+              <li>Waitress service recommended</li>
+              <li>Additional fee for plates service </li>
+                <li>Vegan, vegeterian option available </li>
+               <li>Lactose free, without nuts</li>
+                 <li>Free delivery - Helsinki, Vantaa, Espoo. </li>
+            </ul>
+                <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+              <br>
+              <a href="/menus" class="btn btn-secondary my-2" >Read more</a>
+          </div>
+        </div>
+      </div>
+       <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Table buffet</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/depositphotos_177115630-stock-photo-christmas-table-roasted-meats-candles.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€-50€<small class="text-muted fw-light"></small></h4>
+             <h4 class="my-0 fw-normal">Main - chicken, pork, salmon, turkey, lamb options, side dish, salads, desert<small class="text-muted fw-light"></small></h4>
+
+            <h4 class="my-0 fw-normal">650 gr per person<small class="text-muted fw-light"></small></h4>
+
+            <ul class="list-unstyled mt-3 mb-4">
+
+
+              <li>Served as table buffet</li>
+              <li>Waitress service recommended</li>
+              <li>Additional fee for plates service </li>
+               <li>Vegan, vegeterian option available </li>
+               <li>Lactose free, without nuts</li>
+                 <li>Free delivery - Helsinki, Vantaa, Espoo. </li>
+            </ul>
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+              <br>
+              <a href="/menus" class="btn btn-secondary my-2" >Read more</a>
+          </div>
+        </div>
+      </div>
+       <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Stand buffet</h4>
+          </div>
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."  src = "/static/photoeditorsdk-export (4).png"></image>
+             <br>
+              <h4 class="card-title pricing-card-title">35€-80€<small class="text-muted fw-light"></small></h4>
+             <h4 class="my-0 fw-normal">Meat bites, fish (salmon) bites, shrimps, cheese and salad bites, fruits and sweet bites<small class="text-muted fw-light"></small></h4>
+
+            <h4 class="my-0 fw-normal">400 gr per person<small class="text-muted fw-light"></small></h4>
+
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Served in portions (stand table)</li>
+              <li>Waitress service recommended</li>
+              <li>Additional fee for plates service </li>
+               <li>Vegan, vegeterian option available </li>
+               <li>Lactose free, without nuts</li>
+                <li>Free delivery - Helsinki, Vantaa, Espoo. </li>
+            </ul>
+            <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+              <br>
+              <a href="/menus" class="btn btn-secondary my-2" >Read more</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    </div>
+
+
+  </main>
+{% endblock %}
