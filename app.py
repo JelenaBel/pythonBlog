@@ -66,11 +66,11 @@ def register():
 
         try:
             db.session.add(user)
-            db.session.flush()
+
             db.session.commit()
             return redirect('/signup')
         except:
-            db.session.rollback()
+
             print("При регистрации произошла ошибка")
             return "При регистрации произошла ошибка"
 
