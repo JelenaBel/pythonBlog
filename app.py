@@ -1,11 +1,8 @@
-import login as login
-from flask import Flask,  render_template, url_for, request, redirect, session, flash
 
+from flask import Flask,  render_template, url_for, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import LoginManager, login_user, login_required, UserMixin
-from werkzeug.security import check_password_hash, generate_password_hash
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catering.db'
@@ -62,19 +59,33 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route('/signup')
+def signup_open():
+    return render_template("signup.html")
+
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == "POST":
-
         email = request.form['email']
         password = request.form['password']
+
         if email and password:
+
             user = Users.query.filter_by(email=email).first()
 
-            if check_password_hash(user.password, password):
+            def is_active(user):
+                return True
+
+            def get_id(user):
+                user.id = getattr(user, app.login_manager.id_attribute)()
+                return user.id
+
+
+
+            if user.password == password:
                 user.is_active = True
-
-
+                user.id = get_id(user)
                 login_user(user)
                 flash('You were successfully logged in')
                 render_template("index.html")
@@ -93,8 +104,8 @@ def register():
         email = request.form['email']
         if request.form['password'] == request.form['passwordRepeat']:
             password = request.form['password']
-            hash_password = generate_password_hash(password)
-            user = Users(name=name, email=email, password=hash_password)
+
+            user = Users(name=name, email=email, password=password)
 
         try:
             db.session.add(user)
