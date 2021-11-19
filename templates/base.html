@@ -98,6 +98,9 @@ body {
     <a href="/signup">Sign Up</a>
   <a href="/contact">Contact</a>
   <a href="/about">About us</a>
+    {% if session['user']!= None %}
+    <a href="/about">Hello,  {{ session['user'] }}</a>
+     {% endif %}
 
      <a class = "iLoveMyBasket" href = "ShoppingCard.php"><i class="fa fa-shopping-basket" style="font-size:25px;color:black; position: relative; padding-top: 0px; padding-left: 0px;" ></i></a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">

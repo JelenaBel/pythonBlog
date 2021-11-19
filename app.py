@@ -2,17 +2,17 @@
 from flask import Flask,  render_template, url_for, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask_login import LoginManager, login_user, login_required, UserMixin
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catering.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-login_manager = LoginManager(app)
+
 app.secret_key = 'krokokodilshchikki'
 
 
-class Products(UserMixin, db.Model):
+class Products(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), primary_key=False)
     price = db.Column(db.Float(7), nullable=False)
@@ -33,9 +33,7 @@ class Users(db.Model):
         return f"<users {self.id}>"
 
 
-@login_manager.user_loader
-def load_user(id):
-    return Users.query.get(int(id))
+
 
 
 @app.route('/')
@@ -74,19 +72,9 @@ def signup():
 
             user = Users.query.filter_by(email=email).first()
 
-            def is_active(user):
-                return True
-
-            def get_id(user):
-                user.id = getattr(user, app.login_manager.id_attribute)()
-                return user.id
-
-
 
             if user.password == password:
-                user.is_active = True
-                user.id = get_id(user)
-                login_user(user)
+                session['user'] = user.name
                 flash('You were successfully logged in')
                 render_template("index.html")
             else:
@@ -124,10 +112,7 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    return redirect(url_for('index'))
+
 
 
 if __name__ == "__main__":
