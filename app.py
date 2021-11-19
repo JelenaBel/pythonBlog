@@ -74,7 +74,7 @@ def signup():
             if check_password_hash(user.password, password):
                 user.is_active = True
 
-                user
+
                 login_user(user)
                 flash('You were successfully logged in')
                 render_template("index.html")
