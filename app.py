@@ -1,4 +1,6 @@
-from flask import Flask, render_template, url_for, request, redirect, session, flash
+import login as login
+from flask import Flask,  render_template, url_for, request, redirect, session, flash
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import LoginManager, login_user, login_required, UserMixin
