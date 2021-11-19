@@ -1,5 +1,14 @@
 <!doctype html>
 <html lang="en">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -89,6 +98,7 @@ body {
     <a href="/signup">Sign Up</a>
   <a href="/contact">Contact</a>
   <a href="/about">About us</a>
+
      <a class = "iLoveMyBasket" href = "ShoppingCard.php"><i class="fa fa-shopping-basket" style="font-size:25px;color:black; position: relative; padding-top: 0px; padding-left: 0px;" ></i></a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
