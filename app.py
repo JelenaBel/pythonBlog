@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'zybrzubryachestiy'
 
+
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'obyelousova@gmail.com'
@@ -25,7 +26,7 @@ class Products(db.Model):
     title = db.Column(db.String(100), primary_key=False)
     price = db.Column(db.Float(7), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    photo = db.Column(db.DateTime, default=datetime.utcnow)
+    photo = db.Column(db.String(100))
 
     def __repr__(self):
         return f"<products {self.id}>"
@@ -46,7 +47,7 @@ class Contacts(db.Model):
     name = db.Column(db.String(100), primary_key=False)
     email = db.Column(db.String(100), nullable=False)
     subject = db.Column(db.String(300), nullable=False)
-    message = db.Column(db.String(300), nullable=False)
+    message = db.Column(db.Text(300), nullable=False)
 
     def __repr__(self):
         return f"<сontacts {self.id}>"
@@ -76,22 +77,19 @@ def feedback():
         subject = request.form['customertext']
         message = request.form['subject']
 
-        contact = Contacts(name=name, email=email, subject=subject, message=message)
+        contact1 = Contacts(name=name, email=email, subject=subject, message=message)
 
         try:
-            db.session.add(contact)
+            db.session.add(contact1)
             db.session.commit()
 
-            return redirect('/index')
+            return redirect('/')
 
-        except Exception as ex:
-
-            print("Error: " + str(ex))
+        except:
 
             print("При регистрации произошла ошибка")
 
             return "При регистрации произошла ошибка"
-
 
     return render_template('/contact.html')
 
@@ -148,11 +146,10 @@ def register():
             sending_email(name, email)
             return redirect('/signup')
 
-        except  Exception as ex:
-
-            print("Error: " + ex)
+        except:
 
             print("При регистрации произошла ошибка")
+
             return "При регистрации произошла ошибка"
 
     return render_template("register.html")
@@ -163,9 +160,6 @@ def about():
     return render_template("about.html")
 
 
-
-
-
 if __name__ == "__main__":
-    app.run(debug =True)
+    app.run(debug=True)
 
