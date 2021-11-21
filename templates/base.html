@@ -90,8 +90,12 @@ body {
     <a href="/signup">Sign Up</a>
   <a href="/contact">Contact</a>
   <a href="/about">About us</a>
-    {% if session['user']!= None %}
-    <a href="/about">Hello,  {{ session['user'] }}</a>
+    {% if session['user']== "Olena Byelousova" %}
+    <a href="/addproduct">Add product</a>
+     <a href="/feedback">Feedback</a>
+     {% endif %}
+    {% if session['user']!= None and session['user']!= "Olena Byelousova" %}
+    <a href="/about">{{ session['user'] }}</a>
      {% endif %}
 
      <a class = "iLoveMyBasket" href = "ShoppingCard.php"><i class="fa fa-shopping-basket" style="font-size:25px;color:black; position: relative; padding-top: 0px; padding-left: 0px;" ></i></a>

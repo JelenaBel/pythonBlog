@@ -82,7 +82,7 @@ def feedback():
         try:
             db.session.add(contact1)
             db.session.commit()
-
+            sending_email_feedbackform(name, email)
             return redirect('/')
 
         except:
@@ -97,6 +97,13 @@ def feedback():
 def sending_email(name, email):
     msg = Message('Hello from the other side!', sender='obyelousova@gmail.com', recipients=[email])
     msg.body = "Hey,"+name+" you are successfully registered on Simple Catering."
+    mail.send(msg)
+    return "Message sent!"
+
+
+def sending_email_feedbackform(name, email):
+    msg = Message('You letter to Simple Catering.', sender='obyelousova@gmail.com', recipients=[email])
+    msg.body = "Hey, "+name+"! Thank you for contacting Simple Catering! We will answer for your letter as soon as possible."
     mail.send(msg)
     return "Message sent!"
 
@@ -158,6 +165,11 @@ def register():
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+@app.route('/addproduct')
+def addproduct():
+    return render_template("addproduct.html")
 
 
 if __name__ == "__main__":
