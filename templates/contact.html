@@ -82,19 +82,20 @@ input[type=submit]:hover {
       </div>
 
       <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded-3 bg-light">
+     <form class="p-4 p-md-5 border rounded-3 bg-light" method = 'POST'>
 
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <label for="fname">Name</label>
+    <input type="text" id="fname" name="name" placeholder="Your name.." required>
 
     <label for="email">E-mail</label>
-     <input type="text" id="email" name="email" placeholder="Your e-mail..">
+    <input type="text" id="email" name="email" placeholder="Your e-mail.." required>
 
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    <label for="lname">Subject</label>
+    <input type="text" id="lname" name="customertext" placeholder="Write something.." required>
+
+    <label for="subject">Your message</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
+
 
     <input type="submit" value="Submit">
   </form>

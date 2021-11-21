@@ -1,14 +1,6 @@
 <!doctype html>
 <html lang="en">
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -24,7 +16,7 @@ body {
 
 .topnav {
 
-    overflow: hidden;
+  overflow: hidden;
   background-color: white;
 }
 
@@ -123,7 +115,15 @@ function myFunction() {
 </script>
     </div>
 </div>
-
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
 
 {% block body%}{% endblock %}

@@ -2,14 +2,22 @@
 from flask import Flask,  render_template, url_for, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+from flask_mail import Mail, Message
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catering.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+app.config['SECRET_KEY'] = 'zybrzubryachestiy'
 
-app.secret_key = 'krokokodilshchikki'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'obyelousova@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Kokoshnik45'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 
 class Products(db.Model):
@@ -33,7 +41,15 @@ class Users(db.Model):
         return f"<users {self.id}>"
 
 
+class Contacts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), primary_key=False)
+    email = db.Column(db.String(100), nullable=False)
+    subject = db.Column(db.String(300), nullable=False)
+    message = db.Column(db.String(300), nullable=False)
 
+    def __repr__(self):
+        return f"<сontacts {self.id}>"
 
 
 @app.route('/')
@@ -53,8 +69,38 @@ def menusdetail():
 
 
 @app.route('/contact', methods=['POST', 'GET'])
-def contact():
-    return render_template("contact.html")
+def feedback():
+    if request.method == "POST":
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['customertext']
+        message = request.form['subject']
+
+        contact = Contacts(name=name, email=email, subject=subject, message=message)
+
+        try:
+            db.session.add(contact)
+            db.session.commit()
+
+            return redirect('/index')
+
+        except Exception as ex:
+
+            print("Error: " + str(ex))
+
+            print("При регистрации произошла ошибка")
+
+            return "При регистрации произошла ошибка"
+
+
+    return render_template('/contact.html')
+
+
+def sending_email(name, email):
+    msg = Message('Hello from the other side!', sender='obyelousova@gmail.com', recipients=[email])
+    msg.body = "Hey,"+name+" you are successfully registered on Simple Catering."
+    mail.send(msg)
+    return "Message sent!"
 
 
 @app.route('/signup')
@@ -72,10 +118,11 @@ def signup():
 
             user = Users.query.filter_by(email=email).first()
 
-
             if user.password == password:
                 session['user'] = user.name
+                session['user_email'] = user.email
                 flash('You were successfully logged in')
+
                 render_template("index.html")
             else:
                 flash('Login or password is not correct')
@@ -98,8 +145,12 @@ def register():
         try:
             db.session.add(user)
             db.session.commit()
+            sending_email(name, email)
             return redirect('/signup')
-        except:
+
+        except  Exception as ex:
+
+            print("Error: " + ex)
 
             print("При регистрации произошла ошибка")
             return "При регистрации произошла ошибка"
