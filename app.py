@@ -83,19 +83,6 @@ def feedbakreading():
     return render_template("feedback.html", contacts = contacts)
 
 
-@app.route('/newsletters')
-def newsletters():
-    contacts = Contacts.query.all();
-    users = Users.query.all();
-    return render_template("newsletters.html", contacts = contacts, users = users)
-
-def sending_email_newsletter(subject, email, text):
-    msg = Message('You letter to Simple Catering.', sender='obyelousova@gmail.com', recipients=[email])
-    msg.body = "Hey, "+name+"! Thank you for contacting Simple Catering! We will answer for your letter as soon as possible."
-    mail.send(msg)
-    return "Message sent!"
-
-
 @app.route('/menusdetail')
 def menusdetail():
     return render_template("menusdetail.html")
