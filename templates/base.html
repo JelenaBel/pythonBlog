@@ -85,14 +85,15 @@ body {
 <div class="topnav" id="myTopnav">
   <a href="/" class="active">Our service</a>
   <a href="/menus">Our menus</a>
-    <a href="create-article.html">Calculator</a>
-    <a href="#news">Order</a>
+
+    <a href="/shop">Create</a>
     <a href="/signup">Sign Up</a>
   <a href="/contact">Contact</a>
   <a href="/about">About us</a>
     {% if session['user']== "Olena Byelousova" %}
     <a href="/addproduct">Add product</a>
      <a href="/feedback">Feedback</a>
+     <a href="/newsletters">Newsletter</a>
      {% endif %}
     {% if session['user']!= None and session['user']!= "Olena Byelousova" %}
     <a href="/about">{{ session['user'] }}</a>

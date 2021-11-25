@@ -4,12 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_mail import Mail, Message
 import random
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catering.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'zybrzubryachestiy'
+UPLOAD_FOLDER = 'static/images'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -21,12 +25,14 @@ app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 
+
 class Products(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), primary_key=False)
     price = db.Column(db.Float(7), nullable=False)
+    category = db.Column(db.String(100), primary_key=False)
     description = db.Column(db.Text, nullable=False)
-    photo = db.Column(db.String(100))
+    photo = db.Column(db.String(200))
 
     def __repr__(self):
         return f"<products {self.id}>"
@@ -48,10 +54,13 @@ class Contacts(db.Model):
     email = db.Column(db.String(100), nullable=False)
     subject = db.Column(db.String(300), nullable=False)
     message = db.Column(db.Text(300), nullable=False)
+    updatetime = db.Column(db.Date, default=datetime.utcnow)
 
     def __repr__(self):
         return f"<сontacts {self.id}>"
 
+db.create_all()
+print("DB Created")
 
 @app.route('/')
 @app.route('/home')
@@ -62,6 +71,29 @@ def index():
 @app.route('/menus')
 def menus():
     return render_template("menus2.html")
+
+@app.route('/shop')
+def shop():
+
+    return render_template("shop.html")
+
+@app.route('/feedback')
+def feedbakreading():
+    contacts = Contacts.query.all();
+    return render_template("feedback.html", contacts = contacts)
+
+
+@app.route('/newsletters')
+def newsletters():
+    contacts = Contacts.query.all();
+    users = Users.query.all();
+    return render_template("newsletters.html", contacts = contacts, users = users)
+
+def sending_email_newsletter(subject, email, text):
+    msg = Message('You letter to Simple Catering.', sender='obyelousova@gmail.com', recipients=[email])
+    msg.body = "Hey, "+name+"! Thank you for contacting Simple Catering! We will answer for your letter as soon as possible."
+    mail.send(msg)
+    return "Message sent!"
 
 
 @app.route('/menusdetail')
@@ -76,6 +108,7 @@ def feedback():
         email = request.form['email']
         subject = request.form['customertext']
         message = request.form['subject']
+
 
         contact1 = Contacts(name=name, email=email, subject=subject, message=message)
 
@@ -92,6 +125,46 @@ def feedback():
             return "При регистрации произошла ошибка"
 
     return render_template("contact.html")
+
+
+@app.route('/addproduct', methods=['POST', 'GET'])
+
+def addproduct():
+    if request.method == "POST":
+
+        name = request.form['productname']
+        price = request.form['productprice']
+        category = request.form['category']
+        description = request.form['subject']
+        file = request.files['filename']
+
+
+
+
+        if file.filename == '':
+            flash("No image selected for upload")
+            return render_template("addproduct.html")
+
+        if file and file.filename:
+
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+
+
+
+        product = Products(title=name, price=price, category=category, description=description, photo=file.filename)
+
+        try:
+            db.session.add(product)
+            db.session.commit()
+            return redirect('/')
+
+        except:
+
+            print("При добавлении товара произошла ошибка")
+
+            return "При добавлении товара произошла ошибка"
+
+    return render_template("addproduct.html")
 
 
 def sending_email(name, email):
@@ -168,7 +241,7 @@ def about():
 
 
 @app.route('/addproduct')
-def addproduct():
+def addproductopen():
     return render_template("addproduct.html")
 
 

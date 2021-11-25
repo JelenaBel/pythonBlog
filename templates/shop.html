@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title%}
+Shop
+{% endblock %}
+
+{% block body%}
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+<main>
+
+    <div class = "headerMenuList">
+        <h1 class="fw-light">Create your own menu in our menu constructor</h1>
+        <br>
+         <a href="/mains" class="btn btn-primary my-2">Mains</a>
+         <a href="/sides" class="btn btn-primary my-2">Sides</a>
+         <a href="/salads" class="btn btn-primary my-2">Salads</a>
+         <a href="/bites" class="btn btn-primary my-2">Bites</a>
+         <a href="/deserts" class="btn btn-primary my-2">Deserts</a>
+
+        <h3 class="fw-light">This option available for 10 person or bigger events</h3>
+
+    </div>
+    <br>
+
+
+
+    <div class ="container">
+    <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+
+       <div class="col">
+        <div class="card mb-4 rounded-4 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/Stuffed-dates-recipe-780x520.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+
+          </div>
+        </div>
+      </div>
+       <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/originalnoe-ukrashenie-bljuda.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+      </div>
+    </div>
+
+
+    </div>
+
+ <div class="col">
+        <div class="card mb-4 rounded-4 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/Wng-Z1sK7Gq-phN3NifkCg.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+
+          </div>
+        </div>
+      </div>
+       <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/depositphotos_6147091-stock-photo-duck-fillet.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+      </div>
+    </div>
+
+
+    </div>
+         <div class="col">
+        <div class="card mb-4 rounded-4 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/14009.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+
+
+          </div>
+        </div>
+      </div>
+       <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+          </div>
+
+          <div class="card-body">
+            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/3214.jpg')}}"></image>
+             <br>
+
+              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+
+           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+      </div>
+    </div>
+
+
+</div>
+    </div>
+    </div>
+
+  </main>
+    {% endblock %}

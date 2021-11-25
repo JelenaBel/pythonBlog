@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title%}
+Menus
+{% endblock %}
+
+{% block body%}
+<body>
+<div class = "headerMenuList">
+    <div class = "container">
+        <h1 class="fw-light">Given customer feedback</h1>
+        <br>
+    {%  for el in contacts %}
+    <div class ="alert alert-info" style ="text-align: left">
+        <h6>Name:  {{el.name}}</h6>
+        <h6>E-mail:  {{el.email}}</h6>
+        <h6>Subject: {{el.subject}}</h6>
+        <h6>Message: </h6><p>{{el.message}}</p>
+
+
+    </div>
+
+
+    {% endfor %}
+    </div>
+</div>
+</body>
+
+{% endblock %}
