@@ -25,11 +25,11 @@ Shop
     <div class = "headerMenuList">
         <h1 class="fw-light">Create your own menu in our menu constructor</h1>
         <br>
-         <a href="/mains" class="btn btn-primary my-2">Mains</a>
-         <a href="/sides" class="btn btn-primary my-2">Sides</a>
-         <a href="/salads" class="btn btn-primary my-2">Salads</a>
-         <a href="/bites" class="btn btn-primary my-2">Bites</a>
-         <a href="/deserts" class="btn btn-primary my-2">Deserts</a>
+         <a href="/shop" class="btn btn-primary my-2">Mains</a>
+         <a href="/shop" class="btn btn-primary my-2">Sides</a>
+         <a href="/shop" class="btn btn-primary my-2">Salads</a>
+         <a href="/shop" class="btn btn-primary my-2">Bites</a>
+         <a href="/shop" class="btn btn-primary my-2">Deserts</a>
 
         <h3 class="fw-light">This option available for 10 person or bigger events</h3>
 
@@ -39,44 +39,32 @@ Shop
 
 
     <div class ="container">
+
     <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+        {%  for el in products %}
 
        <div class="col">
         <div class="card mb-4 rounded-4 shadow-sm">
           <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
+            <h4 class="my-0 fw-normal">{{el.title}}</h4>
           </div>
 
           <div class="card-body">
-            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/Stuffed-dates-recipe-780x520.jpg')}}"></image>
+<!--            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/{{el.photo}}')}}"></image>-->
+            <img class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "/static/images/{{el.photo}}"/>
+
              <br>
 
-              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
+              <h4 class="card-title pricing-card-title">{{el.price}}€/per person<small class="text-muted fw-light"></small></h4>
 
-           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
+           <a href="/addtocard?product_id={{el.id}}" class="btn btn-primary my-2">Add to card</a>
 
 
           </div>
         </div>
       </div>
-       <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Grilled salmon in teriyaki sauce</h4>
-          </div>
+        {% endfor %}
 
-          <div class="card-body">
-            <image class="img-fluid img-thumbnail" style ="width: 100%" alt="..."   src = "{{url_for('static',filename = 'images/originalnoe-ukrashenie-bljuda.jpg')}}"></image>
-             <br>
-
-              <h4 class="card-title pricing-card-title">17€/per person<small class="text-muted fw-light"></small></h4>
-
-           <a href="/menus" class="btn btn-primary my-2">Add to card</a>
-      </div>
-    </div>
-
-
-    </div>
 
  <div class="col">
         <div class="card mb-4 rounded-4 shadow-sm">

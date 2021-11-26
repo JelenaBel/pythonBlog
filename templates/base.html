@@ -97,9 +97,10 @@ body {
      {% endif %}
     {% if session['user']!= None and session['user']!= "Olena Byelousova" %}
     <a href="/about">{{ session['user'] }}</a>
+     <a href="/logout">Logout</a>
      {% endif %}
 
-     <a class = "iLoveMyBasket" href = "ShoppingCard.php"><i class="fa fa-shopping-basket" style="font-size:25px;color:black; position: relative; padding-top: 0px; padding-left: 0px;" ></i></a>
+     <a class = "iLoveMyBasket" href = "/shoppingcard"><i class="fa fa-shopping-basket" style="font-size:25px;color:black; position: relative; padding-top: 0px; padding-left: 0px;" ></i></a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>

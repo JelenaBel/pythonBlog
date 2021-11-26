@@ -29,7 +29,7 @@ mail = Mail(app)
 class Products(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), primary_key=False)
-    price = db.Column(db.Float(7), nullable=False)
+    price = db.Column(db.Integer )
     category = db.Column(db.String(100), primary_key=False)
     description = db.Column(db.Text, nullable=False)
     photo = db.Column(db.String(200))
@@ -73,9 +73,11 @@ def menus():
     return render_template("menus2.html")
 
 @app.route('/shop')
-def shop():
+def shopmains():
+    products = db.session.query(Products).filter(Products.category=="Mains").all()
 
-    return render_template("shop.html")
+
+    return render_template("shop.html", products = products)
 
 @app.route('/feedback')
 def feedbakreading():
@@ -86,6 +88,39 @@ def feedbakreading():
 @app.route('/menusdetail')
 def menusdetail():
     return render_template("menusdetail.html")
+
+@app.route('/addtocard')
+def addtocard():
+    id = request.args.get("product_id")
+
+    print("hi product"+id)
+    product  = db.session.query(Products).filter(Products.id==id).all()
+    if  'card'in session:
+        session['card'] = session['card']+", "+ id
+
+        print(session['card'])
+    else:
+        session['card'] = id
+
+        print(session['card'])
+
+    return redirect("/shop")
+
+
+@app.route('/shoppingcard')
+def shoppingcard():
+
+    if  'card'in session:
+        shoppingcard = [];
+        shoppingcard =  session['card'].split(",")
+        print(shoppingcard)
+
+
+    else:
+
+        return redirect("/shop")
+
+    return render_template("shoppingcard.html")
 
 
 @app.route('/contact', methods=['POST', 'GET'])
@@ -202,6 +237,7 @@ def register():
     if request.method == "POST":
         name = request.form['name']
         email = request.form['email']
+
         if request.form['password'] == request.form['passwordRepeat']:
             password = request.form['password']
 
@@ -226,6 +262,11 @@ def register():
 def about():
     return render_template("about.html")
 
+@app.route('/logout')
+def logout():
+    session.clear()
+
+    return render_template("index.html")
 
 @app.route('/addproduct')
 def addproductopen():
